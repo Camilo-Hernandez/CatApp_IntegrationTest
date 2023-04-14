@@ -18,8 +18,7 @@ class CatsApiProvider {
 
   final Map<String, String> headers = {
     'content-type': "application/json",
-    'x-api-key':
-        'live_IlRQjj0PEkaPQexhFMlOsmv8vU3llljNUpR8sy3eZ07HRyeJMRcklU6pqABpMkdG'
+    'x-api-key': ''
   };
 
   Future<List<CatModel>> getCats() async {
