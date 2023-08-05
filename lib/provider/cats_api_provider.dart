@@ -18,7 +18,7 @@ class CatsApiProvider {
 
   final Map<String, String> headers = {
     'content-type': "application/json",
-    'x-api-key': ''
+    'x-api-key': 'live_u5hb7s5Gvc9R4TmPhy6BIi6UmYArCzp1WRbSNz5whLbWDsKAtnxCoOI7IuYOLkA4'
   };
 
   Future<List<CatModel>> getCats() async {
@@ -45,8 +45,7 @@ class CatsApiProvider {
   }
 
   Future<List<FavoriteCatModel>> getFavorites() async {
-    http.Response getResponse =
-        await http.get(Uri.parse(apiFavorites), headers: headers);
+    http.Response getResponse = await http.get(Uri.parse(apiFavorites), headers: headers);
 
     if (getResponse.statusCode == 200) {
       List decodedFavorites = jsonDecode(getResponse.body);
@@ -54,8 +53,7 @@ class CatsApiProvider {
           decodedFavorites.map((e) => FavoriteCatModel.fromJson(e)).toList();
       return favoriteCats;
     } else {
-      throw Exception(
-          'Failure in getting favorites from CatAPI: ${getResponse.reasonPhrase}');
+      throw Exception('Failure in getting favorites from CatAPI: ${getResponse.reasonPhrase}');
     }
   }
 
@@ -70,21 +68,18 @@ class CatsApiProvider {
       debugPrint('Success in post request: ${postResponse.body}');
       return;
     } else {
-      throw Exception(
-          'Failure in posting favorite Request: ${postResponse.reasonPhrase}');
+      throw Exception('Failure in posting favorite Request: ${postResponse.reasonPhrase}');
     }
   }
 
   Future<void> deleteCatFromFavorites(int catFavoriteId) async {
-    final deleteResponse = await http
-        .delete(Uri.parse('$apiFavorites/$catFavoriteId'), headers: headers);
+    final deleteResponse =
+        await http.delete(Uri.parse('$apiFavorites/$catFavoriteId'), headers: headers);
 
     if (deleteResponse.statusCode == 200) {
-      debugPrint(
-          'Cat $catFavoriteId deleted successfully from favorites: ${deleteResponse.body}');
+      debugPrint('Cat $catFavoriteId deleted successfully from favorites: ${deleteResponse.body}');
     } else {
-      throw Exception(
-          'Failure in deleting selected favorite: ${deleteResponse.reasonPhrase}');
+      throw Exception('Failure in deleting selected favorite: ${deleteResponse.reasonPhrase}');
     }
   }
 }
